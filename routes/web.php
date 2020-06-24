@@ -17,3 +17,6 @@ Route::get('/','LocalController@index')->name('home');
 
 /* Consultar los detalles de la reservación */
 Route::post('/getDetailsReservation','ReservationController@getInfo')->name('getInfo');
+
+/* Registrar la Compañía así como la reservación */
+Route::post('/registerReservation','CompanyController@register')->name('register');

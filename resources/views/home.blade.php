@@ -47,7 +47,7 @@
                 type : "post",
                 data : {"local" : local}
             }).done(function(data){
-                $("#contentImage").html('<img src="{{asset('storage/companies/logos')}}/'+data.info.company.logo+'"  alt="'+data.info.company.name+'" class="img-thumbnail img-company">');
+                if(data.info.company.logo!="") $("#contentImage").html('<img src="{{asset('storage/companies/logos')}}/'+data.info.company.logo+'"  alt="'+data.info.company.name+'" class="img-thumbnail img-company">');
                 $("#detailCompany").val(data.info.company.name);
                 $("#detailRFC").val(data.info.company.rfc);
                 $("#detailStartDate").val(data.info.start_date);
@@ -63,13 +63,65 @@
         $(".btn-reservation").on('click',function(){
             var local = $(this).data('local');
             $(".localNumber").html(local);
+            $("#local").val(local);
+            $("#formReserve")[0].reset();
+            $("#contentLogo").addClass('d-none');
+            $("#result").html("");
             $("#modalReserve").modal("show");
         });
 
         /* Mostrar/Ocultar carga de logo */
         $("#uploadLogo").on('click',function(){
             if($(this).is(':checked')) $("#contentLogo").removeClass('d-none');
-            else $("#contentLogo").addClass('d-none');
+            else{
+                $("#contentLogo").addClass('d-none');
+                $("#logo").val("");
+            }
+        });
+
+        /* Reservación */
+        $("#formReserve").on('submit',function(e){
+            e.preventDefault();
+            var start = $("#start_date").val();
+            var end   = $("#end_date").val();
+
+            if(new Date(start).getTime() >= new Date(end).getTime()){
+                $("#result").html('<p class="alert alert-info text-center">Por favor corrobore las fechas.</p>');
+                return false;
+            }
+
+            if($("#uploadLogo").is(':checked')){
+                if($("#logo").val()==""){
+                    $("#result").html('<p class="alert alert-info text-center">Por favor adjunte su imagen.</p>');
+                    return false;
+                }
+            }
+
+            $("#result").html('<p class="alert alert-info text-center">Por favor espere...</p>');
+            $("#btnRegister").prop('disabled',true);
+            var formData = new FormData($("#formReserve")[0]);
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url  : "{{route('register')}}",
+                type : "post",
+                data : formData,
+                contentType: false,
+                processData: false
+            }).done(function(data){
+                if(data.res=="success"){
+                    $("#result").html('<p class="alert alert-success text-center"><strong>¡Registro exitoso!</strong></p>');
+                    setTimeout(function(){ window.location.href = "{{route('home')}}" }, 1500);
+                }else{
+                    $("#result").html('<p class="alert alert-danger text-center">Por favor intente nuevamente.</p>');
+                    $("#btnRegister").prop('disabled',false);
+                }
+            }).fail(function(msg){
+                $("#result").html('<p class="alert alert-danger text-center">Servicio no disponible, por favor intente más tarde.</p>');
+                $("#btnRegister").prop('disabled',false);
+            });
+
         });
 
     });

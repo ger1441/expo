@@ -2,6 +2,10 @@ body{
     background-color: #CFD0D0;
 }
 
+textarea{
+    resize: none;
+}
+
 .img-company{
     width: 200px;
     height: 200px;
