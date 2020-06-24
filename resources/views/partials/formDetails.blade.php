@@ -2,35 +2,34 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Detalles del Local <span id="localNumber"></span></h5>
+                <h5 class="modal-title">Detalles del Local <span class="localNumber"></span></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form action="#" class="row">
-                    <div class="col-12 text-center">
-                        <img src="{{asset('storage/companies/logos/logo_wens_sas.jpg')}}" alt="Logo">
+                    <div class="col-12 text-center" id="contentImage">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="company">Compañia</label>
-                        <input type="text" class="form-control" id="company" readonly disabled>
+                        <label for="detailCompany">Compañia</label>
+                        <input type="text" class="form-control" id="detailCompany" readonly disabled>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="RFC">RFC</label>
-                        <input type="text" class="form-control" id="RFC" readonly disabled>
+                        <label for="detailRFC">RFC</label>
+                        <input type="text" class="form-control" id="detailRFC" readonly disabled>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="start_date">Fecha inicio</label>
-                        <input type="text" class="form-control" id="start_date" readonly disabled>
+                        <label for="detailStartDate">Fecha inicio</label>
+                        <input type="text" class="form-control" id="detailStartDate" readonly disabled>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="end_date">Fecha fin</label>
-                        <input type="text" class="form-control" id="end_date" readonly disabled>
+                        <label for="detailEndDate">Fecha fin</label>
+                        <input type="text" class="form-control" id="detailEndDate" readonly disabled>
                     </div>
                     <div class="form-group col-12">
-                        <label for="description">Descripción</label>
-                        <input type="text" class="form-control" id="description" readonly disabled>
+                        <label for="detailDescription">Descripción</label>
+                        <textarea class="form-control" id="detailDescription" readonly disabled></textarea>
                     </div>
                 </form>
             </div>

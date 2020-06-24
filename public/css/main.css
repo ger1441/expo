@@ -1,3 +1,9 @@
 body{
     background-color: #CFD0D0;
 }
+
+.img-company{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}

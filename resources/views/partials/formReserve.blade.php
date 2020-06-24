@@ -3,7 +3,7 @@
         <div class="modal-content">
             <form action="#" id="formReserve">
                 <div class="modal-header">
-                    <h5 class="modal-title">Reservar Local <span id="localNumber"></span></h5>
+                    <h5 class="modal-title">Reservar Local <span class="localNumber"></span></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -39,6 +39,7 @@
                         <div class="form-group col-12 d-none" id="contentLogo">
                             <input type="file" name="logo" id="logo" class="form-control">
                         </div>
+                        <div class="col-12" id="result"></div>
                     </div>
                 </div>
                 <div class="modal-footer">

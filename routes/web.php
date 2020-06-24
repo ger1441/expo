@@ -14,3 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','LocalController@index')->name('home');
+
+/* Consultar los detalles de la reservación */
+Route::post('/getDetailsReservation','ReservationController@getInfo')->name('getInfo');
