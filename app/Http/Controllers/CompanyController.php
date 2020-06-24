@@ -28,6 +28,7 @@ class CompanyController extends Controller
             }
         }
 
+        /* Registramos a la compañía */
         $company = new Company();
         $company->name = $request->company;
         $company->rfc  = $request->rfc ?? "XAXX010101000";

@@ -40,14 +40,13 @@
             var local = $(this).data('local');
             $(".localNumber").html(local);
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 url  : "{{route('getInfo')}}",
                 type : "post",
                 data : {"local" : local}
             }).done(function(data){
                 if(data.info.company.logo!="") $("#contentImage").html('<img src="{{asset('storage/companies/logos')}}/'+data.info.company.logo+'"  alt="'+data.info.company.name+'" class="img-thumbnail img-company">');
+                else $("#contentImage").html('');
                 $("#detailCompany").val(data.info.company.name);
                 $("#detailRFC").val(data.info.company.rfc);
                 $("#detailStartDate").val(data.info.start_date);
@@ -101,9 +100,7 @@
             $("#btnRegister").prop('disabled',true);
             var formData = new FormData($("#formReserve")[0]);
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 url  : "{{route('register')}}",
                 type : "post",
                 data : formData,
