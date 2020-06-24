@@ -9,6 +9,9 @@
             </div>
             <div class="modal-body">
                 <form action="#" class="row">
+                    <div class="col-12 text-center">
+                        <img src="{{asset('storage/companies/logos/logo_wens_sas.jpg')}}" alt="Logo">
+                    </div>
                     <div class="form-group col-md-6">
                         <label for="company">Compañia</label>
                         <input type="text" class="form-control" id="company" readonly disabled>
