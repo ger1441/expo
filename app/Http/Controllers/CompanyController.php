@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{Company,Reservation, Local};
+use App\Traits;
 
 class CompanyController extends Controller
 {
+    /* Trait para envio de correo */
+    use Traits\SendMessage;
+
     public function register(Request $request){
         $validateForm =$request->validate([
             'company' => 'required|string',
@@ -50,6 +54,8 @@ class CompanyController extends Controller
         $local->status = 1;
         $local->save();
 
+        /* Enviamos correo de confirmacion */
+        $this->sendMessage($request->company,$request->local,$request->start_date,$request->end_date,$request->description);
 
         return response()->json(["res"=>"success"]);
     }

@@ -108,13 +108,14 @@
                 processData: false
             }).done(function(data){
                 if(data.res=="success"){
-                    $("#result").html('<p class="alert alert-success text-center"><strong>¡Registro exitoso!</strong></p>');
+                    $("#result").html('<p class="alert alert-success text-center"><strong>¡Registro exitoso!</strong><br>Se envío un correo de confirmación</p>');
                     setTimeout(function(){ window.location.href = "{{route('home')}}" }, 1500);
                 }else{
                     $("#result").html('<p class="alert alert-danger text-center">Por favor intente nuevamente.</p>');
                     $("#btnRegister").prop('disabled',false);
                 }
             }).fail(function(msg){
+                console.log(msg);
                 $("#result").html('<p class="alert alert-danger text-center">Servicio no disponible, por favor intente más tarde.</p>');
                 $("#btnRegister").prop('disabled',false);
             });
