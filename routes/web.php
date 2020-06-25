@@ -20,3 +20,6 @@ Route::post('/getDetailsReservation','ReservationController@getInfo')->name('get
 
 /* Registrar la Compañía así como la reservación */
 Route::post('/registerReservation','CompanyController@register')->name('register');
+
+/* Liberar el local */
+Route::post('/vacateLocal','LocalController@vacate')->name('vacate');

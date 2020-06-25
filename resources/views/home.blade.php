@@ -39,6 +39,7 @@
         $(".btn-details").on('click',function(){
             var local = $(this).data('local');
             $(".localNumber").html(local);
+            $("#btn-vacate").attr('data-local',local);
             $.ajax({
                 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 url  : "{{route('getInfo')}}",
@@ -115,11 +116,25 @@
                     $("#btnRegister").prop('disabled',false);
                 }
             }).fail(function(msg){
-                console.log(msg);
                 $("#result").html('<p class="alert alert-danger text-center">Servicio no disponible, por favor intente más tarde.</p>');
                 $("#btnRegister").prop('disabled',false);
             });
+        });
 
+        /* Desocupar el local */
+        $("#btn-vacate").on("click",function(){
+            var local = $(this).data("local");
+            $("#btn-vacate").prop("disabled",true);
+            $.ajax({
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                url  : "{{route('vacate')}}",
+                type : "post",
+                data : {"local":local}
+            }).done(function(data){
+                if(data.res=="success") window.location.href = "{{route('home')}}";
+            }).fail(function(msg){
+                $("#btnRegister").prop('disabled',false);
+            });
         });
 
     });

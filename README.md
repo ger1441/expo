@@ -4,10 +4,10 @@
 
 Reservación de locales para diferentes compañias.
 
-- Al inicio de muestran los locales disponibles para reservar
-- Si el local está disponible se podrá reservar, de lo contrario se podrá consultar la información de la empresa que lo está ocupando
-- Al reservar un local se enviará un correo de confirmación con la información de la reservación
-
+- Al inicio de muestran los locales disponibles para reservar.
+- Si el local está disponible se podrá reservar, de lo contrario se podrá consultar la información de la empresa que lo está ocupando.
+- Al reservar un local se enviará un correo de confirmación con la información de la reservación.
+- Existe la posibilidad de liberar un local que ya está ocupado.
 
 
 ## Detalles Técnicos
